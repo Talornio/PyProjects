@@ -64,6 +64,8 @@ def turno_banco():
         punti_banco = calcola_punti(mano_banco, punti_banco)
         print(f'Mano del Banco: {mano_banco}')
         print(f'I punti del Banco: {punti_banco}\n')
+    if punti_banco > 17:
+        print('Il Banco ha sballato! Hai vinto!')
 
 
 game_init()
