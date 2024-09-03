@@ -22,10 +22,11 @@ def game_init():
         mano_giocatore.append(draw())
     print(f'\nMano del Banco: [{mano_banco[0]}, x]\n')
     print(f'La tua mano: {mano_giocatore}')
-    punti_giocatore = calcola_punti(mano_giocatore, punti_giocatore)
+    punti_giocatore = calcola_punti(mano_giocatore)
     print(f'I tuoi punti: {punti_giocatore}\n')
 
-def calcola_punti(mano, punti):
+def calcola_punti(mano):
+    punti = 0
     for card in mano:
         if card in ('re', 'donna', 'jack'):
             punti += 10
@@ -48,11 +49,12 @@ def turno_giocatore():
             if yn == 'p':
                 mano_giocatore.append(draw())
                 print(f'La tua mano: {mano_giocatore}')
-                punti_giocatore = calcola_punti(mano_giocatore, punti_giocatore)
+                punti_giocatore = calcola_punti(mano_giocatore)
                 print(f'I tuoi punti: {punti_giocatore}\n')
             elif yn == 's':
                 print('Turno del banco!')
                 tf = False
+        else: tf = False
 
 def blackjack(mano):
     punti = 0
@@ -62,20 +64,20 @@ def blackjack(mano):
         elif card == 'asso':
             punti += 11
     if punti == 21:
-        print('Black Jack!')
+        print('Black Jack!\n')
         return True
     return False
 
 def turno_banco():
     global punti_banco
     print(f'Mano del Banco: {mano_banco}')
-    punti_banco = calcola_punti(mano_banco, punti_banco)
+    punti_banco = calcola_punti(mano_banco)
     print(f'I punti del Banco: {punti_banco}\n')
     print
     while punti_banco < 17:
         print('Il Banco pesca!')
         mano_banco.append(draw())
-        punti_banco = calcola_punti(mano_banco, punti_banco)
+        punti_banco = calcola_punti(mano_banco)
         print(f'Mano del Banco: {mano_banco}')
         print(f'I punti del Banco: {punti_banco}\n')
 
