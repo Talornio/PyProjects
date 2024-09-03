@@ -6,10 +6,6 @@ mano_banco = []
 punti_banco = 0
 mano_giocatore = []
 punti_giocatore = 0
-vittoria_giocatore = False
-vittoria_banco = False
-
-global_flag = True
 
 def draw():
     return random.choice(cards)
