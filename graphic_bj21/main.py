@@ -120,7 +120,7 @@ def on_click_stai():
     if punti_banco > punti_giocatore:
         print('Ha vinto il banco!')
     if punti_banco < punti_giocatore:
-        print('Hai vinto!)
+        print('Hai vinto!')
     if punti_banco == punti_giocatore:
         print('Pareggio!')
 
