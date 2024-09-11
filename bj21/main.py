@@ -66,39 +66,51 @@ def blackjack(mano):
 
 def turno_banco():
     global punti_banco
+    global punti_giocatore
     print(f'Mano del Banco: {mano_banco}')
     punti_banco = calcola_punti(mano_banco)
     print(f'I punti del Banco: {punti_banco}\n')
     print
-    while punti_banco < 17:
+    while punti_banco < 17 or punti_banco < punti_giocatore:
         print('Il Banco pesca!')
         mano_banco.append(draw())
         punti_banco = calcola_punti(mano_banco)
         print(f'Mano del Banco: {mano_banco}')
         print(f'I punti del Banco: {punti_banco}\n')
 
-while True:
-    game_init()
-    turno_giocatore()
-    if punti_giocatore > 21:
-        print('Hai sballato!')
-        break
-    elif blackjack(mano_giocatore):
-        punti_giocatore = 22
-    turno_banco()
-    if punti_banco > 21:
-        print('Il banco ha sballato!')
-        break
-    elif blackjack(mano_banco):
-        punti_banco = 22
-    if punti_banco > punti_giocatore:
-        print('Ha vinto il banco!')
-        break
-    if punti_banco < punti_giocatore:
-        print('Hai vinto!')
-        break
-    if punti_banco == punti_giocatore:
-        print('Pareggio!')
-        break
+def game_loop():
+    global punti_banco
+    punti_banco = 0
+    global punti_giocatore
+    punti_giocatore = 0
+    global mano_banco
+    mano_banco.clear()
+    global mano_giocatore
+    mano_giocatore.clear()
+    while True:
+        game_init()
+        turno_giocatore()
+        if punti_giocatore > 21:
+            print('Hai sballato!')
+            break
+        elif blackjack(mano_giocatore):
+            punti_giocatore = 22
+        turno_banco()
+        if punti_banco > 21:
+            print('Il banco ha sballato!')
+            break
+        elif blackjack(mano_banco):
+            punti_banco = 22
+        if punti_banco > punti_giocatore:
+            print('Ha vinto il banco!')
+            break
+        if punti_banco < punti_giocatore:
+            print('Hai vinto!')
+            break
+        if punti_banco == punti_giocatore:
+            print('Pareggio!')
+            break
 
+
+game_loop()
 
