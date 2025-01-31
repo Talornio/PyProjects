@@ -1,0 +1,1 @@
+FLASK_APP="C:\Users\Utente\Desktop\Projects\PyProjects\FlaskWebServer\server\application.py"
